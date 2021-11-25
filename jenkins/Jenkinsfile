@@ -17,5 +17,17 @@ pipeline {
                 }
             }
         }
+        stage("deploy-dev"){
+           steps{
+              sshagent(['Deploy-creds']) {
+              sh """
+              scp -o StrictHostKeyChecking=no **/target/*.war  
+              ubuntu@yourip:/opt/tomcat/webapps/
+              ssh ubuntu@yourip /opt/tomcat/bin/shutdown.sh
+              ssh ubuntu@yourip /opt/tomcat/bin/startup.sh
+               """
+                }
+          }
+        }
     }
 }

@@ -20,7 +20,7 @@ pipeline {
            steps{
               sshagent(credentials: ['Deploy-creds']) {
               sh """
-              scp -o StrictHostKeyChecking=no target/*.war admin-tomcat@40.71.120.179:/opt/tomcat/webapps/
+              scp -o StrictHostKeyChecking=no target/*.war admin-tomcat@40.71.120.179:/opt/tomcat/webapps
               ssh ubuntu@yourip /opt/tomcat/bin/shutdown.sh
               ssh ubuntu@yourip /opt/tomcat/bin/startup.sh
                """

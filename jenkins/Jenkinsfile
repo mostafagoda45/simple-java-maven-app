@@ -21,8 +21,8 @@ pipeline {
               sshagent(credentials: ['Deploy-creds']) {
               sh """
               scp -o StrictHostKeyChecking=no target/*.war admin-tomcat@40.71.120.179:/opt/tomcat/webapps
-              ssh ubuntu@yourip /opt/tomcat/bin/shutdown.sh
-              ssh ubuntu@yourip /opt/tomcat/bin/startup.sh
+              ssh admin-tomcat@40.71.120.179 /opt/tomcat/bin/shutdown.sh
+              ssh admin-tomcat@40.71.120.179 /opt/tomcat/bin/startup.sh
                """
                 }
               archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
